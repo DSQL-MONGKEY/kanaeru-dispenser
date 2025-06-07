@@ -32,10 +32,13 @@ export async function POST(req: Request) {
          return map;
       }, {});
 
+      let estimationTime = 0;
       const calculatedComposition = composition.map((c:any) => {
          const ml_portion = (c.percentage * total_ml) / 100;
+         
          const active_time = (ml_portion / flowRateMap[c.pump_number]) * 1000;
 
+         estimationTime += active_time!;
          return {
             ...c,
             ml_portion,
@@ -51,8 +54,9 @@ export async function POST(req: Request) {
       mqttClient.publish(
          'multidispenser/mix',
          JSON.stringify(mqttPayload),
-         { qos: 1 },
+         { qos: 0 },
          (err) => {
+            // eslint-disable-next-line no-console
             if(err) console.error('Error publishing MQTT: ', err);
          }
       );
@@ -95,7 +99,10 @@ export async function POST(req: Request) {
 
       return NextResponse.json({
          success: true,
-         data: mixLog,
+         data: {
+            estimation_time: estimationTime,
+            mix_log: mixLog
+         },
       }, { status: 201 });
 
    } catch(error) {
@@ -106,38 +113,6 @@ export async function POST(req: Request) {
             error: 'An error occurred while processing your request',
             details: error.message
          }, { status: 500});
-      }
-
-   }
-}
-
-export async function GET() {
-   try {
-      const { data, error } = await supabase
-      .from('climber_users')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-      if(error) {
-         return NextResponse.json({
-            success: false,
-            error: 'An error occurred while processing your request',
-            details: error.message
-         }, { status: 500 });
-      }
-      return NextResponse.json({
-         success: true,
-         data,
-      }, { status: 200 });
-
-   } catch(error) {
-
-      if(error instanceof Error) {
-         return NextResponse.json({
-            success: false,
-            error: 'An error occurred while processing your request',
-            details: error.message,
-         }, { status: 500 });
       }
 
    }
