@@ -13,13 +13,8 @@ mqttClient.on('connect', () => {
    console.log('MQTT Connected to HiveMQ');
 })
 mqttClient.on('error', (err) => {
-   console.log('MQTT Connected Error: ', err)
+   console.log('MQTT Connection Error: ', err)
 })
-
-mqttClient.on('message', function (topic, message) {
-    // called each time a message is received
-      console.log('Received message:', topic, message.toString());
-});
 
 
 export default mqttClient;
