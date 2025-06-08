@@ -149,3 +149,34 @@ export async function POST(req: Request) {
    }
 }
 
+export async function GET() {
+   try {
+      const { data:mixedRecipe, error:mixedRecipeError } = await supabase
+      .from('mix_logs')
+      .select(`*, recipes(name)`)
+      .eq('mode', 'recipe')
+      .order('created_at', { ascending: false });
+
+      if(!mixedRecipe || mixedRecipeError) {
+         return NextResponse.json({
+            success: false,
+            error: 'Failed to get logs',
+            details: mixedRecipeError?.message || 'Logs error',
+         }, { status: 500 });
+      }
+
+      return NextResponse.json({
+         success: true,
+         data: mixedRecipe,
+      }, { status: 200 });
+      
+   } catch(error) {
+      if(error instanceof Error) {
+         return NextResponse.json({
+            success: false,
+            error: 'An error occurred while processing your request',
+            details: error.message
+         }, { status: 500});
+      }
+   }
+}
