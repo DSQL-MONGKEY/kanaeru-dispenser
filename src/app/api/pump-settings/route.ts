@@ -6,34 +6,30 @@ export async function POST(req: Request) {
       const body = await req.json();
 
       const {
-         name,
-         phone,
-         email,
-         address,
+         pump_number,
+         flow_rate
       } = body;
 
-      const { data: climberData, error: climberError } = await supabase
-         .from('climber_users')
+      const { data: pumpData, error: pumpError } = await supabase
+         .from('pump_settings')
          .insert({
-            name,
-            phone,
-            email,
-            address
+            pump_number,
+            flow_rate
          })
          .select();
 
-         if(climberError) {
-            return NextResponse.json({
-               success: false,
-               error: 'Error creating climber user',
-               details: climberError.message
-            }, { status: 500 });
-         }
-
+      if(!pumpData || pumpError) {
          return NextResponse.json({
-            success: true,
-            data: climberData,
-         }, { status: 201 });
+            success: false,
+            error: 'Error creating climber user',
+            details: pumpError.message
+         }, { status: 500 });
+      }
+
+      return NextResponse.json({
+         success: true,
+         data: pumpData,
+      }, { status: 201 });
 
    } catch(error) {
 
@@ -51,11 +47,11 @@ export async function POST(req: Request) {
 export async function GET() {
    try {
       const { data, error } = await supabase
-      .from('climber_users')
+      .from('pump_settings')
       .select('*')
-      .order('created_at', { ascending: false });
+      .order('pump_number', { ascending: true });
 
-      if(error) {
+      if(!data || error) {
          return NextResponse.json({
             success: false,
             error: 'An error occurred while processing your request',
