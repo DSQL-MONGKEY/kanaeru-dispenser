@@ -6,10 +6,10 @@ interface IOverview {
   pie_stats: React.ReactNode;
   bar_stats: React.ReactNode;
   area_stats: React.ReactNode;
-  devices: React.ReactNode;
-  climbers: React.ReactNode;
-  register_device: React.ReactNode;
-  trackings: React.ReactNode;
+  mix_manual: React.ReactNode;
+  mix_recipes: React.ReactNode;
+  mix_logs: React.ReactNode;
+  pump: React.ReactNode;
   maps: React.ReactNode;
 }
 
@@ -18,11 +18,10 @@ export default function OverViewLayout({
   pie_stats,
   bar_stats,
   area_stats,
-  devices,
-  climbers,
-  register_device,
-  trackings,
-  maps
+  mix_manual,
+  mix_recipes,
+  mix_logs,
+  pump,
 }: IOverview) {
   return (
     <PageContainer>
@@ -34,10 +33,10 @@ export default function OverViewLayout({
         </div>
 
         <div className='*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs md:grid-cols-2 lg:grid-cols-4'>
-          {climbers}
-          {devices}
-          {register_device}
-          {trackings}
+          {mix_manual}
+          {mix_recipes}
+          {pump}
+          {mix_logs}
         </div>
         <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-7'>
           <div className='col-span-4'>{bar_stats}</div>

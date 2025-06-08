@@ -51,7 +51,7 @@ export const navItems: NavItem[] = [
   },
   {
     title: 'Logs',
-    url: '/dashboard/logs',
+    url: '/dashboard/mix-logs',
     icon: 'log',
     shortcut: ['l', 'lo'],
     isActive: false,

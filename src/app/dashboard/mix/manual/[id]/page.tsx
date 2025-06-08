@@ -1,13 +1,13 @@
 import FormCardSkeleton from '@/components/form-card-skeleton';
 import PageContainer from '@/components/layout/page-container';
 import { Suspense } from 'react';
-import  ClimberViewPage from '@/features/climber-users/components/climber-view-page';
+import MixManualViewPage from '@/features/mix/manual/components/mix-manual-view-page';
 
 export const metadata = {
-  title: 'Dashboard : Climber User View'
+  title: 'Dashboard : Mix Manual Recipe View'
 };
 
-type PageProps = { params: Promise<{ climbId: string }> };
+type PageProps = { params: Promise<{ mixManualId: string }> };
 
 export default async function Page(props: PageProps) {
   const params = await props.params;
@@ -15,7 +15,7 @@ export default async function Page(props: PageProps) {
     <PageContainer scrollable>
       <div className='flex-1 space-y-4'>
         <Suspense fallback={<FormCardSkeleton />}>
-          <ClimberViewPage climbId={params.climbId} />
+          <MixManualViewPage mixManualId={params.mixManualId} />
         </Suspense>
       </div>
     </PageContainer>

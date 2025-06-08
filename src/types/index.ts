@@ -59,6 +59,39 @@ export interface Tracking {
   }
 } 
 
+export interface MixLog {
+  id: number;
+  mode: string;
+  volume: number;
+  created_at: string;
+  recipe_name: string;
+  composition: [
+    {
+      pump_number: number;
+      volume_ml: number;
+    }
+  ]
+}
+
+export interface MixedManual {
+  id: number;
+  mode: string;
+  name: string
+  recipe_id:  null;
+  total_volume: number;
+  created_at: string;
+}
+export interface MixedRecipe {
+  id: number;
+  mode: string;
+  recipe_id:  null;
+  total_volume: number;
+  created_at: string;
+  recipes: {
+    name: string;
+  }
+}
+
 export interface Devices {
   created_at: string;
   updated_at: string;
