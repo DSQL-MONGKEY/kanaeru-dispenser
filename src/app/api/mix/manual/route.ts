@@ -7,7 +7,7 @@ export async function POST(req: Request) {
       const body = await req.json();
 
       const {
-         recipe_name,
+         name,
          total_ml,
          composition,
       } = body;
@@ -46,24 +46,25 @@ export async function POST(req: Request) {
          }
       });
       
-      const mqttPayload = {
-         recipe_name,
-         total_ml,
-         composition: calculatedComposition
-      }
-      mqttClient.publish(
-         'multidispenser/mix',
-         JSON.stringify(mqttPayload),
-         { qos: 0 },
-         (err) => {
-            // eslint-disable-next-line no-console
-            if(err) console.error('Error publishing MQTT: ', err);
-         }
-      );
+      // const mqttPayload = {
+      //    recipe_name,
+      //    total_ml,
+      //    composition: calculatedComposition
+      // }
+      // mqttClient.publish(
+      //    'multidispenser/mix',
+      //    JSON.stringify(mqttPayload),
+      //    { qos: 0 },
+      //    (err) => {
+      //       // eslint-disable-next-line no-console
+      //       if(err) console.error('Error publishing MQTT: ', err);
+      //    }
+      // );
 
       const { data:mixLog, error:mixLogError } = await supabase
          .from('mix_logs')
          .insert({
+            name,
             mode: 'manual',
             recipe_id: null,
             total_volume: total_ml
@@ -115,5 +116,37 @@ export async function POST(req: Request) {
          }, { status: 500});
       }
 
+   }
+}
+
+export async function GET() {
+   try {
+      const { data:mixManual, error:mixManualError } = await supabase
+      .from('mix_logs')
+      .select('*')
+      .eq('mode', 'manual')
+      .order('created_at', { ascending: false });
+
+      if(!mixManual || mixManualError) {
+         return NextResponse.json({
+            success: false,
+            error: 'Failed to get logs',
+            details: mixManualError?.message || 'Logs error',
+         }, { status: 500 });
+      }
+
+      return NextResponse.json({
+         success: true,
+         data: mixManual,
+      }, { status: 200 });
+
+   } catch(error) {
+      if(error instanceof Error) {
+         return NextResponse.json({
+            success: false,
+            error: 'An error occurred while processing your request',
+            details: error.message
+         }, { status: 500});
+      }
    }
 }
