@@ -63,9 +63,9 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
    }
 }
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, { params }: { params: Promise<{ id: string }> }) {
    try {
-      const { id } = params;
+      const { id } = await params;
       const body = await req.json();
       const { name, composition } = body;
 
@@ -137,9 +137,9 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
    }
 }
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
    try {
-      const { id } = params;
+      const { id } = await params;
 
       // 1. Hapus semua recipe_details terlebih dahulu
       const { error: detailsError } = await supabase
