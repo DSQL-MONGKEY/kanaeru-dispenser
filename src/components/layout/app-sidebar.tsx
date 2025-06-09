@@ -33,12 +33,12 @@ import { navItems } from '@/constants/data';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { useUser } from '@clerk/nextjs';
 import {
+  IconAlien,
   IconBell,
   IconChevronRight,
   IconChevronsDown,
   IconCreditCard,
   IconLogout,
-  IconPhotoUp,
   IconUserCircle
 } from '@tabler/icons-react';
 import { SignOutButton } from '@clerk/nextjs';
@@ -48,15 +48,15 @@ import * as React from 'react';
 import { Icons } from '../icons';
 import { OrgSwitcher } from '../org-switcher';
 export const company = {
-  name: 'D-Dashboard',
-  logo: IconPhotoUp,
+  name: 'Kanaeru Dashboard',
+  logo: IconAlien,
   plan: 'Enterprise'
 };
 
 const tenants = [
-  { id: '1', name: 'LoRa System' },
-  { id: '2', name: 'Shazam' },
-  { id: '3', name: 'Maps Tracker' },
+  { id: '1', name: 'Kanaeru System' },
+  { id: '2', name: 'Subeki' },
+  { id: '3', name: 'Syarief' },
 ];
 
 export default function AppSidebar() {

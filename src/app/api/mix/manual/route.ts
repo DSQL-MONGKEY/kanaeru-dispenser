@@ -46,20 +46,20 @@ export async function POST(req: Request) {
          }
       });
       
-      // const mqttPayload = {
-      //    recipe_name,
-      //    total_ml,
-      //    composition: calculatedComposition
-      // }
-      // mqttClient.publish(
-      //    'multidispenser/mix',
-      //    JSON.stringify(mqttPayload),
-      //    { qos: 0 },
-      //    (err) => {
-      //       // eslint-disable-next-line no-console
-      //       if(err) console.error('Error publishing MQTT: ', err);
-      //    }
-      // );
+      const mqttPayload = {
+         recipe_name: name,
+         total_ml,
+         composition: calculatedComposition
+      }
+      mqttClient.publish(
+         'multidispenser/mix',
+         JSON.stringify(mqttPayload),
+         { qos: 0 },
+         (err) => {
+            // eslint-disable-next-line no-console
+            if(err) console.error('Error publishing MQTT: ', err);
+         }
+      );
 
       const { data:mixLog, error:mixLogError } = await supabase
          .from('mix_logs')

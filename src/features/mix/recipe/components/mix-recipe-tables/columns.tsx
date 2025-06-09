@@ -1,12 +1,11 @@
 'use client';
-import { DataTableColumnHeader } from '@/components/ui/table/data-table-column-header';
-import { Column, ColumnDef } from '@tanstack/react-table';
-import { MixedManual } from '@/types';
+import { ColumnDef } from '@tanstack/react-table';
+import { MixedRecipe } from '@/types';
 import { formatDate } from '@/lib/format';
 import { IconBlender } from '@tabler/icons-react';
 import { Badge } from '@/components/ui/badge';
 
-export const columns: ColumnDef<MixedManual>[] = [
+export const columns: ColumnDef<MixedRecipe>[] = [
   {
     id: 'mode',
     accessorKey: 'mode',
@@ -14,45 +13,48 @@ export const columns: ColumnDef<MixedManual>[] = [
     cell: ({ cell }) => (
       <Badge>
         <IconBlender/>
-        {cell.getValue<MixedManual['mode']>()}
+        {cell.getValue<MixedRecipe['mode']>()}
       </Badge>
     ),
     enableColumnFilter: true
   },
   {
     id: 'name',
-    accessorKey: 'name',
-    header: ({ column }: { column: Column<MixedManual, unknown> }) => (
-      <DataTableColumnHeader column={column} title='Recipe Name' />
+    accessorKey: 'recipes.name',
+    header: "Recipe Name",
+    cell: ({ row }) => (
+      <div className='capitalize'>
+        {row.original.recipes.name}
+      </div>
     ),
-    cell: ({ cell }) => <div>{cell.getValue<MixedManual['name']>()}</div>,
     enableColumnFilter: true
   },
-  
   {
+    id:'total_volume',
     accessorKey: 'total_volume',
     header: 'Volume',
     cell: ({ cell }) => (
       <div>
-        {cell.getValue<MixedManual['total_volume']>()} ml
+        {cell.getValue<MixedRecipe['total_volume']>()} ml
       </div>
     )
   },
   {
-    id:'id',
+    id:'estimation_time',
     accessorKey: 'estimation_time',
     header: 'Estimation',
     cell: ({ cell }) => (
       <div>
-        {cell.getValue<MixedManual['estimation_time']>()} .sec
+        {cell.getValue<MixedRecipe['estimation_time']>()} .sec
       </div>
     )
   },
   {
+    id: 'created_at',
     accessorKey: 'created_at',
     header: 'Created',
     cell: ({ cell }) => {
-      const formattedDate = formatDate(cell.getValue<MixedManual['created_at']>(), {
+      const formattedDate = formatDate(cell.getValue<MixedRecipe['created_at']>(), {
         hour: 'numeric',
         minute: 'numeric',
         second: 'numeric',

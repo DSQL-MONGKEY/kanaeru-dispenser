@@ -8,10 +8,10 @@ export async function GET(req: NextRequest, {
   params: Promise<{ slug?: string[] }>
 }) {
    const { slug } = await params;
-   console.log(slug);
 
    return NextResponse.json({
-      mesg: 'ok'
+      mesg: 'ok',
+      slug
    }, { status: 200 });
 
    

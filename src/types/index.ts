@@ -76,6 +76,7 @@ export interface MixLog {
 export interface MixedManual {
   id: number;
   mode: string;
+  estimation_time: string;
   name: string
   recipe_id:  null;
   total_volume: number;
@@ -84,6 +85,7 @@ export interface MixedManual {
 export interface MixedRecipe {
   id: number;
   mode: string;
+  estimation_time: string;
   recipe_id:  null;
   total_volume: number;
   created_at: string;

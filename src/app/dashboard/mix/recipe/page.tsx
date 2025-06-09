@@ -1,18 +1,15 @@
 import PageContainer from '@/components/layout/page-container';
-import { buttonVariants } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
 import { DataTableSkeleton } from '@/components/ui/table/data-table-skeleton';
-import ClimberListingPage from '@/features/mix/manual/components/mix-manual-listing';
+import MixRecipePage from '@/features/mix/recipe/components/mix-recipe-listing';
+import { MixRecipeSheetForm } from '@/features/mix/recipe/components/mix-recipe-sheet-form';
 import { searchParamsCache } from '@/lib/searchparams';
-import { cn } from '@/lib/utils';
-import { IconPlus } from '@tabler/icons-react';
-import Link from 'next/link';
 import { SearchParams } from 'nuqs/server';
 import { Suspense } from 'react';
 
 export const metadata = {
-  title: 'Dashboard: Drinks'
+  title: 'Dashboard: Mix by recipes'
 };
 
 type pageProps = {
@@ -28,28 +25,23 @@ export default async function Page(props: pageProps) {
   // const key = serialize({ ...searchParams });
 
   return (
-    <PageContainer scrollable={false}>
+    <PageContainer scrollable={false} >
       <div className='flex flex-1 flex-col space-y-4'>
         <div className='flex items-start justify-between'>
           <Heading
-            title='Climber Users'
-            description='Manage climber users before start the trackings with interactive and details information'
+            title='Recipe Mixing'
+            description='Receipts Ready to use instantly for yours'
           />
-          <Link
-            href='/dashboard/climber-users/new'
-            className={cn(buttonVariants(), 'text-xs md:text-sm')}
-          >
-            <IconPlus className='mr-2 h-4 w-4' /> Add New
-          </Link>
+          <MixRecipeSheetForm />
         </div>
         <Separator />
         <Suspense
-          // key={key}
+        // key={key}
           fallback={
             <DataTableSkeleton columnCount={5} rowCount={8} filterCount={2} />
           }
         >
-          <ClimberListingPage />
+          <MixRecipePage />
         </Suspense>
       </div>
     </PageContainer>

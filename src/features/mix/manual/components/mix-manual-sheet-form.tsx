@@ -17,22 +17,25 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { IconHandClick } from "@tabler/icons-react"
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { addMixManual } from "../api/add-manual-recipe";
+import { toast } from "sonner";
+import { formatDate } from "@/lib/format";
 
 const formSchema = z.object({
    name: z.string().min(2, {
       message: 'Name must be at least 2 characters.'
    }),
-   total_ml: z.string().min(1, {
+   total_ml: z.number().min(1, {
       message: 'Total ml must be at least 1.'
    }),
-   pump1: z.string().min(1, {
+   pump1: z.number().min(12, {
       message: 'Pump 1 must be at least 1 characters.'
    }),
-   pump2: z.string().min(2, {
-      message: 'Pump 2 must be at least 2 characters.'
+   pump2: z.number().min(2, {
+      message: 'Pump 2 must be at least 1 haracters.'
    }),
-   pump3: z.string().min(2, {
-      message: 'Pump 3 must be at least 2 characters.'
+   pump3: z.number().min(2, {
+      message: 'Pump 3 must be at least 1 characters.'
    })
 })
 
@@ -41,10 +44,10 @@ export function MixManualSheetForm() {
 
    const defaultValues = {
       name: '',
-      total_ml: '0',
-      pump1: '40',
-      pump2: '30',
-      pump3: '30',
+      total_ml: 0,
+      pump1: 40,
+      pump2: 30,
+      pump3: 30,
    };
 
    const form = useForm<z.infer<typeof formSchema>>({
@@ -53,7 +56,30 @@ export function MixManualSheetForm() {
    });
 
    async function onSubmit(values: z.infer<typeof formSchema>) {
-      console.log(values);
+      const response = await addMixManual({...values});
+
+      const result = await response;
+
+      if(!result.success) {
+         toast('Request Failed', {
+            duration: 4000,
+            description: result.error || 'Terjadi kesalahan validasi'
+         });
+         return
+      }
+      const data = result.data;
+
+      const formattedDate = formatDate(data.mix_log.created_at,  {
+         hour: 'numeric',
+         minute: 'numeric',
+         second: 'numeric',
+         hour12: false,
+      });
+
+      toast('Request Successfully', {
+         duration: 5000,
+         description: formattedDate,
+      })
    }
 
    return (
@@ -94,7 +120,11 @@ export function MixManualSheetForm() {
                         <FormItem>
                         <FormLabel>Total Volume</FormLabel>
                         <FormControl>
-                           <Input placeholder='Enter name' {...field} />
+                           <Input 
+                              placeholder='Enter name'
+                              value={field.value}
+                              onChange={(e) => field.onChange(Number(e.target.value))}
+                           />
                         </FormControl>
                         <FormMessage />
                         </FormItem>
@@ -107,7 +137,11 @@ export function MixManualSheetForm() {
                         <FormItem>
                         <FormLabel>Pump Chamber 1</FormLabel>
                         <FormControl>
-                           <Input placeholder='Enter percentage number' {...field} />
+                           <Input 
+                              placeholder='Enter percentage number' 
+                              value={field.value}
+                              onChange={(e) => field.onChange(Number(e.target.value))}
+                           />
                         </FormControl>
                         <FormMessage />
                         </FormItem>
@@ -120,7 +154,11 @@ export function MixManualSheetForm() {
                         <FormItem>
                         <FormLabel>Pump Chamber 2</FormLabel>
                         <FormControl>
-                           <Input placeholder='Enter percentage number' {...field} />
+                           <Input 
+                              placeholder='Enter percentage number'
+                              value={field.value}
+                              onChange={(e) => field.onChange(Number(e.target.value))}
+                           />
                         </FormControl>
                         <FormMessage />
                         </FormItem>
@@ -133,7 +171,11 @@ export function MixManualSheetForm() {
                         <FormItem>
                         <FormLabel>Pump Chamber 3</FormLabel>
                         <FormControl>
-                           <Input placeholder='Enter percentage number' {...field} />
+                           <Input 
+                              placeholder='Enter percentage number' 
+                              value={field.value}
+                              onChange={(e) => field.onChange(Number(e.target.value))}
+                           />
                         </FormControl>
                         <FormMessage />
                         </FormItem>
@@ -143,7 +185,9 @@ export function MixManualSheetForm() {
                <p className='text-foreground opacity-50 text-sm px-4 my-3'>
                   Make sure the percentage of all pumps is 100% total
                </p>
-               <Button type="submit" className="mt-5 float-end mx-4">Create</Button>
+               <SheetClose asChild>
+                     <Button type="submit" className="mt-5 float-end mx-4">Create</Button>
+               </SheetClose>
             </form>
          </Form>
          

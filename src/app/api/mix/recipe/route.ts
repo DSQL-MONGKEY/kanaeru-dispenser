@@ -93,6 +93,7 @@ export async function POST(req: Request) {
          .from('mix_logs')
          .insert({
             mode: 'recipe',
+            estimation_time: estimationTime,
             recipe_id: recipeDbId,
             total_volume: total_ml
          })
