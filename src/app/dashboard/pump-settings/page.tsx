@@ -2,14 +2,14 @@ import PageContainer from '@/components/layout/page-container';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
 import { DataTableSkeleton } from '@/components/ui/table/data-table-skeleton';
-import RecipePage from '@/features/recipes/components/recipe-listing-page';
+import PumpSettingsPage from '@/features/pump-settings/components/pump-settings-listing';
 import { RecipeSheetForm } from '@/features/recipes/components/recipe-sheet-form';
 import { searchParamsCache } from '@/lib/searchparams';
 import { SearchParams } from 'nuqs/server';
 import { Suspense } from 'react';
 
 export const metadata = {
-  title: 'Dashboard: Recipes'
+  title: 'Dashboard: Pump Settings'
 };
 
 type pageProps = {
@@ -41,7 +41,7 @@ export default async function Page(props: pageProps) {
             <DataTableSkeleton columnCount={5} rowCount={8} filterCount={2} />
           }
         >
-          <RecipePage />
+          <PumpSettingsPage />
         </Suspense>
       </div>
     </PageContainer>

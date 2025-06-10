@@ -47,8 +47,8 @@ export const navItems: NavItem[] = [
     items: [] // No child items
   },
   {
-    title: 'Settings',
-    url: '/dashboard/settings',
+    title: 'Pump Settings',
+    url: '/dashboard/pump-settings',
     icon: 'settings',
     shortcut: ['s', 'se'],
     isActive: false,
