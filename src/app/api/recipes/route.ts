@@ -19,6 +19,7 @@ export async function POST(req: Request) {
 
       if (insertError) {
          return NextResponse.json({ 
+            succes: false,
             error: insertError.message 
          }, { status: 500 });
       }
@@ -36,11 +37,13 @@ export async function POST(req: Request) {
 
       if (detailError) {
          return NextResponse.json({
+            success: false,
             error: detailError.message
          }, { status: 500 });
       }
 
       return NextResponse.json({ 
+         succes: true,
          message: 'Resep berhasil disimpan',
          data: {
             recipe,
