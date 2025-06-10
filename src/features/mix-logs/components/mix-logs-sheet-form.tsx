@@ -17,16 +17,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { IconHandClick } from "@tabler/icons-react"
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { addMixManual } from "../api/add-manual-recipe";
 import { toast } from "sonner";
 import { formatDate } from "@/lib/format";
-import { addRecipe } from "../api/add-recipe";
-import { mutate } from "swr";
 
 const formSchema = z.object({
    name: z.string().min(2, {
       message: 'Name must be at least 2 characters.'
    }),
-   pump1: z.number().min(2, {
+   pump1: z.number().min(12, {
       message: 'Pump 1 must be at least 1 characters.'
    }),
    pump2: z.number().min(2, {
@@ -38,7 +37,7 @@ const formSchema = z.object({
 })
 
 
-export function RecipeSheetForm() {
+export function MixManualSheetForm() {
 
    const defaultValues = {
       name: '',
@@ -53,28 +52,25 @@ export function RecipeSheetForm() {
    });
 
    async function onSubmit(values: z.infer<typeof formSchema>) {
-      const response = await addRecipe({...values});
+      const response = await addMixManual({...values});
 
       const result = await response;
-      console.log(result);
 
       if(!result.success) {
-         return (
-            toast('Request Failed', {
-               duration: 4000,
-               description: result.error || 'Terjadi kesalahan validasi'
-            })
-         );
+         toast('Request Failed', {
+            duration: 4000,
+            description: result.error || 'Terjadi kesalahan validasi'
+         });
+         return
       }
       const data = result.data;
-      
-      const formattedDate = formatDate(data.recipe.created_at,  {
+
+      const formattedDate = formatDate(data.mix_log.created_at,  {
          hour: 'numeric',
          minute: 'numeric',
          second: 'numeric',
          hour12: false,
       });
-      mutate('/api/recipes');
 
       toast('Request Successfully', {
          duration: 5000,

@@ -27,7 +27,7 @@ export default function RecipeListingCard() {
    return (
       <div className="flex flex-col gap-2">
          <p>Total recipes {totalItems}</p>
-         <div className="grid gid-cols-1 md:grid-cols-3 gap-2 px-4">
+         <div className="grid gid-cols-1 md:grid-cols-5 gap-5 px-4">
             {recipesData.map((r:any, i:number) => (
                <Card key={r.id + i} className="text-center">
                   <CardTitle>{r.name}</CardTitle>

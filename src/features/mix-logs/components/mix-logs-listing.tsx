@@ -1,9 +1,9 @@
 import { searchParamsCache } from '@/lib/searchparams';
-import RecipeListingCard from './recipe-listing-card';
+import MixManualListingTable from './mix-logs-listing-table';
 
-type RecipeListingPage = {};
+type MixRecipeListingPage = {};
 
-export default async function RecipePage({}: RecipeListingPage) {
+export default async function MixLogsPage({}: MixRecipeListingPage) {
   // Showcasing the use of search params cache in nested RSCs
   const page = searchParamsCache.get('page');
   const search = searchParamsCache.get('name');
@@ -19,6 +19,6 @@ export default async function RecipePage({}: RecipeListingPage) {
   };
 
   return (
-    <RecipeListingCard />
+    <MixManualListingTable />
   );
 }
