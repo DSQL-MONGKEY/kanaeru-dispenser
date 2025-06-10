@@ -47,8 +47,6 @@ export async function POST(req: Request) {
       });
       
       const mqttPayload = {
-         recipe_name: name,
-         total_ml,
          composition: calculatedComposition
       }
       mqttClient.publish(
