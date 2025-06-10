@@ -6,15 +6,15 @@ export async function POST(req: Request) {
       const body = await req.json();
 
       const {
-         pump_number,
-         flow_rate
+         pumpNumber,
+         flowRate
       } = body;
 
       const { data: pumpData, error: pumpError } = await supabase
          .from('pump_settings')
          .insert({
-            pump_number,
-            flow_rate
+            pump_number: pumpNumber,
+            flow_rate: flowRate
          })
          .select();
 
