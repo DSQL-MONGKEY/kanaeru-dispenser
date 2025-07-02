@@ -5,8 +5,8 @@ type TMixRecipe = {
    totalMl: number;
 }
 
-export const addMixRecipe = async ({ totalMl, recipeId }:TMixRecipe) => {
-   const response = await fetch(`/api/mix/recipe`, {
+export const addMixLogs = async ({ totalMl, recipeId }:TMixRecipe) => {
+   const response = await fetch(`/api/mix-logs`, {
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',
