@@ -1,5 +1,5 @@
 import { searchParamsCache } from '@/lib/searchparams';
-import MixManualListingTable from './mix-logs-listing-table';
+import MixLogsListingTable from './mix-logs-listing-table';
 
 type MixRecipeListingPage = {};
 
@@ -19,6 +19,6 @@ export default async function MixLogsPage({}: MixRecipeListingPage) {
   };
 
   return (
-    <MixManualListingTable />
+    <MixLogsListingTable />
   );
 }
