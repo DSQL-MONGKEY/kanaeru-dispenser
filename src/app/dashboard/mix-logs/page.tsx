@@ -2,14 +2,13 @@ import PageContainer from '@/components/layout/page-container';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
 import { DataTableSkeleton } from '@/components/ui/table/data-table-skeleton';
-import MixRecipePage from '@/features/mix/recipe/components/mix-recipe-listing';
-import { MixRecipeSheetForm } from '@/features/mix/recipe/components/mix-recipe-sheet-form';
+import MixLogsPage from '@/features/mix-logs/components/mix-logs-listing';
 import { searchParamsCache } from '@/lib/searchparams';
 import { SearchParams } from 'nuqs/server';
 import { Suspense } from 'react';
 
 export const metadata = {
-  title: 'Dashboard: Mix by recipes'
+  title: 'Dashboard: Mix Logs'
 };
 
 type pageProps = {
@@ -29,10 +28,9 @@ export default async function Page(props: pageProps) {
       <div className='flex flex-1 flex-col space-y-4'>
         <div className='flex items-start justify-between'>
           <Heading
-            title='Recipe Mixing'
-            description='Receipts Ready to use instantly for yours'
+            title='Mix Logs'
+            description='History mixed drink logs'
           />
-          <MixRecipeSheetForm />
         </div>
         <Separator />
         <Suspense
@@ -41,7 +39,7 @@ export default async function Page(props: pageProps) {
             <DataTableSkeleton columnCount={5} rowCount={8} filterCount={2} />
           }
         >
-          <MixRecipePage />
+          <MixLogsPage />
         </Suspense>
       </div>
     </PageContainer>
