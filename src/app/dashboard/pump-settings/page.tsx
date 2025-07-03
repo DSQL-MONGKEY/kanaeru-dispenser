@@ -31,8 +31,8 @@ export default async function Page(props: pageProps) {
       <div className='flex flex-1 flex-col space-y-4'>
         <div className='flex items-start justify-between'>
           <Heading
-            title='Recipes'
-            description='Create Receipts instantly for yours'
+            title='Pump Settings'
+            description='Calibrate and adjust pump flow rate'
           />
 
           <Link href='/dashboard/mix/recipe'>
