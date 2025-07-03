@@ -56,7 +56,6 @@ export function RecipeSheetForm() {
       const response = await addRecipe({...values});
 
       const result = await response;
-      console.log(result);
 
       if(!result.success) {
          return (
