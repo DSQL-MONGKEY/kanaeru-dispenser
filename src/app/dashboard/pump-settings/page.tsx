@@ -1,10 +1,12 @@
 import PageContainer from '@/components/layout/page-container';
+import { Button } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
 import { DataTableSkeleton } from '@/components/ui/table/data-table-skeleton';
 import PumpSettingsPage from '@/features/pump-settings/components/pump-settings-listing';
-import { RecipeSheetForm } from '@/features/recipes/components/recipe-sheet-form';
 import { searchParamsCache } from '@/lib/searchparams';
+import { IconArrowRightToArc } from '@tabler/icons-react';
+import Link from 'next/link';
 import { SearchParams } from 'nuqs/server';
 import { Suspense } from 'react';
 
@@ -32,7 +34,13 @@ export default async function Page(props: pageProps) {
             title='Recipes'
             description='Create Receipts instantly for yours'
           />
-          <RecipeSheetForm />
+
+          <Link href='/dashboard/mix/recipe'>
+            <Button variant='default'>
+              <IconArrowRightToArc />
+              Back to Mix Recipe Page
+            </Button>
+          </Link>
         </div>
         <Separator />
         <Suspense
