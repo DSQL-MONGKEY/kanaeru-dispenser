@@ -111,7 +111,7 @@ export default function PumpSettingsForm() {
                   <FormLabel>Pump Number</FormLabel>
                   <Select
                       onValueChange={(value) => field.onChange(Number(value))}
-                      value={field.value}
+                      value={Number(field.value)}
                     >
                       <FormControl>
                         <SelectTrigger>
