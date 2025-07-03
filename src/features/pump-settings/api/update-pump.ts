@@ -2,7 +2,7 @@
 
 type TPump = {
    pumpNumber: number;
-   flowRate: number;
+   flowRate: number | null;
 }
 
 export const updatePump = async ({ pumpNumber, flowRate }:TPump  ) => {
