@@ -24,14 +24,14 @@ import { formatDate } from '@/lib/format';
 
 const formSchema = z.object({
   pumpNumber: z.number(),
-  flowRate: z.number()
+  flowRate: z.number().nullable()
 });
 
 export default function PumpSettingsForm() {
 
   const defaultValues = {
     pumpNumber: 1,
-    flowRate: 0,
+    flowRate: null,
   };
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -146,7 +146,8 @@ export default function PumpSettingsForm() {
                       type='number'
                       placeholder='Enter flow rate pump'
                       className='resize-none'
-                      onChange={(e) => field.onChange(Number(e.target.value))}
+                      value={field.value ?? ''}
+                      onChange={(e) => field.onChange(e.target.value === '' ? null : Number(e.target.value))}
                     />
                   </FormControl>
                   <FormMessage />
