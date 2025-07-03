@@ -37,7 +37,7 @@ export default function SignInViewPage() {
           >
             <path d='M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3' />
           </svg>
-          LoRa Tracking System
+          Kanaeru Multi Dispenser
         </div>
         <div className='relative z-20 mt-auto'>
           <blockquote className='space-y-2'>
@@ -54,7 +54,7 @@ export default function SignInViewPage() {
           <Link
             className={cn('group inline-flex hover:text-yellow-200')}
             target='_blank'
-            href={'https://github.com/DSQL-MONGKEY/maps-tracker-dashboard'}
+            href={'https://github.com/DSQL-MONGKEY/kanaeru-dispenser'}
           >
             <div className='flex items-center'>
               <GitHubLogoIcon className='size-4' />
@@ -64,7 +64,7 @@ export default function SignInViewPage() {
           </Link>
           <ClerkSignInForm
             initialValues={{
-              emailAddress: 'your_mail+clerk_test@example.com'
+              emailAddress: ''
             }}
           />
 
