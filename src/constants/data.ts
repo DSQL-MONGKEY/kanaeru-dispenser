@@ -92,20 +92,20 @@ export const navItems: NavItem[] = [
         title: 'How it works?',
         shortcut: ['ha', 'ha'],
         url: '/dashboard/faq/works',
-        icon: 'infra' 
+        icon: 'infra'
       },
       {
         title: 'What is this app for?',
         shortcut: ['ap', 'ap'],
         url: '/dashboard/faq/app',
-        icon: 'infra' 
+        icon: 'infra'
       },
       {
         title: 'How to use this app?',
         shortcut: ['us', 'us'],
         url: '/dashboard/faq/use',
-        icon: 'infra' 
-      },
+        icon: 'infra'
+      }
     ]
   },
   {
@@ -115,5 +115,5 @@ export const navItems: NavItem[] = [
     shortcut: ['k', 'k'],
     isActive: false,
     items: [] // No child items
-  },
+  }
 ];

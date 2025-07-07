@@ -18,7 +18,5 @@ export default async function PumpSettingsPage({}: MixManualListingPage) {
     ...(categories && { categories: categories })
   };
 
-  return (
-    <PumpSettingsForm />
-  );
+  return <PumpSettingsForm />;
 }

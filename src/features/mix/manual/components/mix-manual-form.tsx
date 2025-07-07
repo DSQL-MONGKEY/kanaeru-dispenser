@@ -39,7 +39,6 @@ export default function ClimberForm({
   pageTitle: string;
   method?: string | null;
 }) {
-
   const defaultValues = {
     name: initialData?.name || '',
     phone: initialData?.phone || '',
@@ -56,12 +55,10 @@ export default function ClimberForm({
   async function onSubmit(values: z.infer<typeof formSchema>) {
     // try {
     //   const response = await Climber(
-    //     {...values}, 
-    //     initialData?.id ?? '', 
+    //     {...values},
+    //     initialData?.id ?? '',
     //   );
-
     //   const result = await response;
-
     //   if(!result.success) {
     //     toast('Request Failed', {
     //       duration: 4000,
@@ -69,9 +66,7 @@ export default function ClimberForm({
     //     });
     //     return;
     //   }
-
     //   const  data  = await response.data;
-
     //   const formattedDate = (
     //     formatDate(data[0]?.created_at,  {
     //       hour: 'numeric',
@@ -80,14 +75,11 @@ export default function ClimberForm({
     //       hour12: false,
     //     })
     //   );
-
     //   toast('Request successfully', {
     //     duration: 5000,
     //     description: formattedDate,
     //   });
-
     //   mutate('/api/mix/manual');
-
     // } catch(error) {
     //   if(error instanceof Error) {
     //     toast('Error failed to add record', {
@@ -95,7 +87,7 @@ export default function ClimberForm({
     //       description: error.message,
     //       action: {
     //         label: "Close",
-    //         onClick: () => null 
+    //         onClick: () => null
     //       },
     //     });
     //   }
@@ -111,20 +103,23 @@ export default function ClimberForm({
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className=' grid grid-cols-1 md:grid-cols-2 gap-4'>
-              <FormField
-                control={form.control}
-                name='name'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Climber Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder='Enter name' {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className='grid grid-cols-1 gap-4 md:grid-cols-2'
+          >
+            <FormField
+              control={form.control}
+              name='name'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Climber Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder='Enter name' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name='phone'
@@ -179,7 +174,9 @@ export default function ClimberForm({
                 </FormItem>
               )}
             />
-            <Button type='submit' className=" mt-5 md:col-span-2">Submit</Button>
+            <Button type='submit' className='mt-5 md:col-span-2'>
+              Submit
+            </Button>
           </form>
         </Form>
       </CardContent>

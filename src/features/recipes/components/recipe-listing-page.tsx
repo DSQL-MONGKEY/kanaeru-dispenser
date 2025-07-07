@@ -18,7 +18,5 @@ export default async function RecipePage({}: RecipeListingPage) {
     ...(categories && { categories: categories })
   };
 
-  return (
-    <RecipeListingCard />
-  );
+  return <RecipeListingCard />;
 }

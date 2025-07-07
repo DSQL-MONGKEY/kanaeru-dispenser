@@ -36,28 +36,28 @@ export type SidebarNavItem = NavItemWithChildren;
 
 export type RouteParams = {
   params: {
-    id: string
+    id: string;
   };
-}
+};
 
 export interface Tracking {
   id: string;
   device_id: string;
   rssi: string;
-  snr:  string;
+  snr: string;
   latitude: number;
   longitude: number;
   is_emergency: boolean;
   created_at: string;
   updated_at: string;
   devices: {
-    name: string,
-    type: string,
-  }
+    name: string;
+    type: string;
+  };
   climber_users: {
-    name: string
-  }
-} 
+    name: string;
+  };
+}
 
 export interface MixLog {
   id: number;
@@ -70,15 +70,15 @@ export interface MixLog {
       pump_number: number;
       volume_ml: number;
     }
-  ]
+  ];
 }
 
 export interface MixedManual {
   id: number;
   mode: string;
   estimation_time: string;
-  name: string
-  recipe_id:  null;
+  name: string;
+  recipe_id: null;
   total_volume: number;
   created_at: string;
 }
@@ -86,12 +86,12 @@ export interface MixedRecipe {
   id: number;
   mode: string;
   estimation_time: string;
-  recipe_id:  null;
+  recipe_id: null;
   total_volume: number;
   created_at: string;
   recipes: {
     name: string;
-  }
+  };
 }
 
 export interface Devices {
@@ -116,10 +116,10 @@ export interface RegisterDevices {
   devices: {
     name: string;
     type: string;
-  },
+  };
   climber_users: {
     name: string;
-  }
+  };
 }
 
 export interface ClimberUser {

@@ -24,17 +24,14 @@ export default async function Page(props: pageProps) {
   // const key = serialize({ ...searchParams });
 
   return (
-    <PageContainer scrollable={false} >
+    <PageContainer scrollable={false}>
       <div className='flex flex-1 flex-col space-y-4'>
         <div className='flex items-start justify-between'>
-          <Heading
-            title='Mix Logs'
-            description='History mixed drink logs'
-          />
+          <Heading title='Mix Logs' description='History mixed drink logs' />
         </div>
         <Separator />
         <Suspense
-        // key={key}
+          // key={key}
           fallback={
             <DataTableSkeleton columnCount={5} rowCount={8} filterCount={2} />
           }

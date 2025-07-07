@@ -18,7 +18,5 @@ export default async function MixManualPage({}: MixManualListingPage) {
     ...(categories && { categories: categories })
   };
 
-  return (
-    <MixManualListingTable />
-  );
+  return <MixManualListingTable />;
 }

@@ -42,7 +42,8 @@ export default function SignInViewPage() {
         <div className='relative z-20 mt-auto'>
           <blockquote className='space-y-2'>
             <p className='text-lg'>
-              &ldquo;Infokan yang jualan tahu isi, yang isinya kebahagiaan&rdquo;
+              &ldquo;Infokan yang jualan tahu isi, yang isinya
+              kebahagiaan&rdquo;
             </p>
             <footer className='text-sm'>Random Dude</footer>
           </blockquote>
@@ -60,7 +61,6 @@ export default function SignInViewPage() {
               <GitHubLogoIcon className='size-4' />
               <span className='ml-1 inline'>Star on GitHub</span>
             </div>
-            
           </Link>
           <ClerkSignInForm
             initialValues={{

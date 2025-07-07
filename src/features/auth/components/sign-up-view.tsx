@@ -42,7 +42,8 @@ export default function SignUpViewPage() {
         <div className='relative z-20 mt-auto'>
           <blockquote className='space-y-2'>
             <p className='text-lg'>
-              &ldquo;Infokan yang jualan tahu isi, yang isinya kebahagiaan&rdquo;
+              &ldquo;Infokan yang jualan tahu isi, yang isinya
+              kebahagiaan&rdquo;
             </p>
             <footer className='text-sm'>Random Dude</footer>
           </blockquote>

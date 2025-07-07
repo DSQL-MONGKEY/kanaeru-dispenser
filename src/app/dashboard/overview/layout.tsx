@@ -21,7 +21,7 @@ export default function OverViewLayout({
   mix_manual,
   mix_recipes,
   mix_logs,
-  pump,
+  pump
 }: IOverview) {
   return (
     <PageContainer>

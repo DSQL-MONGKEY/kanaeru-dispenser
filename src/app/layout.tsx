@@ -19,7 +19,7 @@ const META_THEME_COLORS = {
 
 export const metadata: Metadata = {
   title: 'LoRa Tracking Dashboard',
-  description: 'Tracking system for LoRa devices',
+  description: 'Tracking system for LoRa devices'
 };
 
 export const viewport: Viewport = {

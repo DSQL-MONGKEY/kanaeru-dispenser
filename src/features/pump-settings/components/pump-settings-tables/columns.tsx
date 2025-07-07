@@ -13,7 +13,7 @@ export const columns: ColumnDef<MixedManual>[] = [
     header: 'Mode',
     cell: ({ cell }) => (
       <Badge>
-        <IconBlender/>
+        <IconBlender />
         {cell.getValue<MixedManual['mode']>()}
       </Badge>
     ),
@@ -28,40 +28,37 @@ export const columns: ColumnDef<MixedManual>[] = [
     cell: ({ cell }) => <div>{cell.getValue<MixedManual['name']>()}</div>,
     enableColumnFilter: true
   },
-  
+
   {
     accessorKey: 'total_volume',
     header: 'Volume',
     cell: ({ cell }) => (
-      <div>
-        {cell.getValue<MixedManual['total_volume']>()} ml
-      </div>
+      <div>{cell.getValue<MixedManual['total_volume']>()} ml</div>
     )
   },
   {
-    id:'id',
+    id: 'id',
     accessorKey: 'estimation_time',
     header: 'Estimation',
     cell: ({ cell }) => (
-      <div>
-        {cell.getValue<MixedManual['estimation_time']>()} .sec
-      </div>
+      <div>{cell.getValue<MixedManual['estimation_time']>()} .sec</div>
     )
   },
   {
     accessorKey: 'created_at',
     header: 'Created',
     cell: ({ cell }) => {
-      const formattedDate = formatDate(cell.getValue<MixedManual['created_at']>(), {
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric',
-        hour12: false
-      });
+      const formattedDate = formatDate(
+        cell.getValue<MixedManual['created_at']>(),
+        {
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric',
+          hour12: false
+        }
+      );
 
-      return (
-        <span>{formattedDate}</span>
-      )
+      return <span>{formattedDate}</span>;
     }
-  },
+  }
 ];

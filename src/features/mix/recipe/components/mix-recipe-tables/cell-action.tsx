@@ -9,7 +9,12 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import { ClimberUser } from '@/types';
-import { IconEdit, IconDotsVertical, IconTrash, IconEye } from '@tabler/icons-react';
+import {
+  IconEdit,
+  IconDotsVertical,
+  IconTrash,
+  IconEye
+} from '@tabler/icons-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { deleteClimber } from '../../api/delete-climber';
@@ -30,14 +35,16 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
     const response = await deleteClimber(data.id);
     const { success } = response;
 
-    if(success) {
+    if (success) {
       mutate('/api/mix/manual');
     }
 
     toast(success ? 'Deleted Successfully' : 'Failed Process', {
-      description: success ? 'Record deleted successfully' : 'Record failed got something wrong to delete the record'
+      description: success
+        ? 'Record deleted successfully'
+        : 'Record failed got something wrong to delete the record'
     });
-};
+  };
 
   return (
     <>

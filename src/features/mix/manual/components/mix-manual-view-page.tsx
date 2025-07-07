@@ -16,19 +16,27 @@ export default async function MixManualViewPage({
   if (mixManualId !== 'new') {
     const response = await getClimberById(mixManualId);
 
-    const { data } =  response ? await response.json() : {
-      data: null
-    };
+    const { data } = response
+      ? await response.json()
+      : {
+          data: null
+        };
 
     pageTitle = 'Update';
 
     mixManualData = data;
     method = 'PUT';
 
-    if(!data) {
+    if (!data) {
       notFound();
     }
   }
 
-  return <MixManualForm initialData={mixManualData} pageTitle={pageTitle} method={method} />;
+  return (
+    <MixManualForm
+      initialData={mixManualData}
+      pageTitle={pageTitle}
+      method={method}
+    />
+  );
 }

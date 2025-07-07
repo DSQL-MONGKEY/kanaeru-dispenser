@@ -18,7 +18,5 @@ export default async function MixRecipePage({}: MixRecipeListingPage) {
     ...(categories && { categories: categories })
   };
 
-  return (
-    <MixManualListingTable />
-  );
+  return <MixManualListingTable />;
 }

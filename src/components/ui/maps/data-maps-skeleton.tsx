@@ -1,11 +1,9 @@
-import { Skeleton } from "../skeleton";
+import { Skeleton } from '../skeleton';
 
 export function MapSkeleton() {
-   return (
-      <div className="flex w-full h-[500px]">
-         <Skeleton
-            className="w-full h-full rounded-md"
-         />
-      </div>
-   )
+  return (
+    <div className='flex h-[500px] w-full'>
+      <Skeleton className='h-full w-full rounded-md' />
+    </div>
+  );
 }

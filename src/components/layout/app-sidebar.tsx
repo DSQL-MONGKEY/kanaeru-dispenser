@@ -56,7 +56,7 @@ export const company = {
 const tenants = [
   { id: '1', name: 'Kanaeru System' },
   { id: '2', name: 'Subeki' },
-  { id: '3', name: 'Syarief' },
+  { id: '3', name: 'Syarief' }
 ];
 
 export default function AppSidebar() {
