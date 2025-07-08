@@ -57,6 +57,7 @@ export const useTaskStore = create<State & Actions>()(
     (set) => ({
       tasks: initialTasks,
       columns: defaultCols,
+      // @ts-ignore
       draggedTask: null,
       addTask: (title: string, description?: string) =>
         set((state) => ({
