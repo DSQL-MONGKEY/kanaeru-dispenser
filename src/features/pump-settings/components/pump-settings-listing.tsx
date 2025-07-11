@@ -1,5 +1,6 @@
 import { searchParamsCache } from '@/lib/searchparams';
 import PumpSettingsForm from './pump-settings-form';
+import PumpSettingsTestForm from './pump-settings-test-form';
 
 type MixManualListingPage = {};
 
@@ -18,5 +19,10 @@ export default async function PumpSettingsPage({}: MixManualListingPage) {
     ...(categories && { categories: categories })
   };
 
-  return <PumpSettingsForm />;
+  return (
+    <>
+      <PumpSettingsForm />
+      <PumpSettingsTestForm />
+    </>
+  );
 }
