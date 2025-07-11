@@ -28,14 +28,14 @@ import { updatePump } from '../api/update-pump';
 import { formatDate } from '@/lib/format';
 
 const formSchema = z.object({
-  pumpNumber: z.string().nullable(),
-  flowRate: z.string().nullable()
+  pumpNumber: z.number().nullable(),
+  flowRate: z.number().nullable()
 });
 
 export default function PumpSettingsForm() {
   const defaultValues = {
-    pumpNumber: '1',
-    flowRate: ''
+    pumpNumber: 1,
+    flowRate: 0
   };
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -115,7 +115,7 @@ export default function PumpSettingsForm() {
                 <FormItem>
                   <FormLabel>Pump Number</FormLabel>
                   <Select
-                    onValueChange={(value) => field.onChange(value)}
+                    onValueChange={(value) => field.onChange(Number(value))}
                     value={field.value}
                   >
                     <FormControl>
